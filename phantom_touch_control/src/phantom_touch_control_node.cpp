@@ -297,13 +297,13 @@ public:
         for (auto [name, prefix] : ranges::views::zip(device_names, prefixes)){
 
             device_controllers_.emplace_back(this, name, prefix, scheduler_rate_hz, publish_joint_states);
-            // std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
         }
 
         // Continuously publish device states from the "haptics loop" thread
         for (auto& dc : device_controllers_) {
-            scheduler_.schedule_synchronous([&dc]() {
+            scheduler_.schedule_asynchronous([&dc]() {
                 dc.publish_state();
                 return rclcpp::ok();
             });
