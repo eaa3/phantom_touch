@@ -1,3 +1,8 @@
+"""
+Multi-container control nodes. Both containers run independly in their own processes.
+
+"""
+
 import launch
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
@@ -36,7 +41,7 @@ def generate_launch_description():
                     # extra_arguments=[{'use_intra_process_comms': True}],
                 ),
             ],
-            output="log",
+            output="screen",
         )
 
         container_list.append(container)

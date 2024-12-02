@@ -1,3 +1,8 @@
+"""
+Single-container phantom touch control nodes. Both containers run independly in their own processes.
+
+"""
+
 import launch
 from launch_ros.actions import ComposableNodeContainer
 from launch_ros.descriptions import ComposableNode
@@ -33,7 +38,7 @@ def generate_launch_description():
                 # extra_arguments=[{'use_intra_process_comms': True}],
             ),
         ],
-        output="screen",
+        output="log",
         # prefix=["gdb -ex run -ex 'break phantom_touch_control_node.cpp:305' --args"]
     )
 
